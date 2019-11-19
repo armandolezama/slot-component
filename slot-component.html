@@ -1,0 +1,51 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<script src="../webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="../paper-listbox/paper-listbox.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-input/paper-input.html">
+
+<dom-module id="slot-component">
+  <template>
+    <slot name="a"></slot>
+    <dom-repeat items="tasks">
+      <template>
+
+      </template>
+    </dom-repeat>
+    <paper-input></paper-input>
+    <paper-listbox></paper-listbox>
+    <paper-item></paper-item>
+  </template>
+
+  <script>
+    /**
+     * `slot-component`
+     * Componente orientado a ver cosas de slot
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class SlotComponent extends Polymer.Element {
+      static get is() { return 'slot-component'; }
+      static get properties() {
+        return {
+          tasks: {
+            type: Array,
+            value: ['Tarea 1', 'tarea 2']
+          },
+          task: {
+            type: String,
+            value: ''
+          }
+        };
+      }
+        _saveToDo(){
+        const value = this.shadowRoot.querySelector('#single-task').value;
+        this.tasks = [...this.tasks, {name: value, completed: false}];
+      }
+    }
+
+    window.customElements.define(SlotComponent.is, SlotComponent);
+  </script>
+</dom-module>
