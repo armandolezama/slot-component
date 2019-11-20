@@ -14,6 +14,9 @@
 
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
+        input, paper-item{
+          display: inline-block;
+        }
       </style>
     </custom-style>
   </head>
@@ -24,7 +27,9 @@
         <template>
           <slot-component id="component">
             <slot id="slot" name="a">
-              <paper-item>Tarea test</paper-item>
+              <div>
+                <paper-item>Tarea test</paper-item> <input type="checkbox">
+              </div>
             </slot>
           </slot-component>
         </template>
@@ -32,7 +37,7 @@
          const component = document.querySelector('#component');
          for(const task of component.tasks){
            document.querySelector('slot').insertAdjacentHTML('beforeend', 
-           `<paper-item>${task}</paper-item>`)
+           `<div><paper-item>${task}</paper-item> <input type="checkbox"></div>`)
          }
 
         </script>
