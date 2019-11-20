@@ -22,11 +22,18 @@
       <h3>Basic slot-component demo</h3>
       <demo-snippet>
         <template>
-          <slot-component>
+          <slot-component id="component">
+            <slot id="slot" name="a">
+              <paper-item>Tarea test</paper-item>
+            </slot>
           </slot-component>
         </template>
         <script>
-          const listInput = document.querySelector(input)
+         const component = document.querySelector('#component');
+         for(const task of component.tasks){
+           document.querySelector('slot').insertAdjacentHTML('beforeend', 
+           `<paper-item>${task}</paper-item>`)
+         }
 
         </script>
       </demo-snippet>

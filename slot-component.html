@@ -6,15 +6,9 @@
 
 <dom-module id="slot-component">
   <template>
-    <slot name="a"></slot>
-    <dom-repeat items="tasks">
-      <template>
-
-      </template>
-    </dom-repeat>
-    <paper-input></paper-input>
-    <paper-listbox></paper-listbox>
-    <paper-item></paper-item>
+    <h3>Lista de tareas</h3>
+    <paper-listbox items="[[tasks]]"></paper-listbox>
+    <slot slot="a"></slot>
   </template>
 
   <script>
@@ -32,18 +26,13 @@
         return {
           tasks: {
             type: Array,
-            value: ['Tarea 1', 'tarea 2']
-          },
-          task: {
-            type: String,
-            value: ''
+            value: ['Tarea 1', 'tarea 2', 'Tarea 3'],
+            reflectToAttribute: true
           }
         };
       }
-        _saveToDo(){
-        const value = this.shadowRoot.querySelector('#single-task').value;
-        this.tasks = [...this.tasks, {name: value, completed: false}];
-      }
+
+        
     }
 
     window.customElements.define(SlotComponent.is, SlotComponent);
